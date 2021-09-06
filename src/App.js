@@ -1,25 +1,17 @@
-import './App.css'
-import { useSelector, useDispatch } from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React from 'react'
+import ReduxExample from './components/ReduxExample'
+import { WrappedMap } from './components/GoogleMaps'
 
-import { actionCreators } from './state/index'
-
-function App() {
-
-  const account = useSelector((state) => state.account)
-  const dispatch = useDispatch()
-
-  // const {depositMoney, withdrawMoney} = bindActionCreators(actionCreators, dispatch)
-  const AC = bindActionCreators(actionCreators, dispatch)
-
-  console.log(AC);
+export default function App() {
   return (
-    <div className="App">
-      <h1>{account}</h1>
-      <button onClick={()=> AC.depositMoney(1000)} >Deposit</button>
-      <button onClick={()=> AC.withdrawMoney(1000)} >Withdraw</button>
+    <div style={{ width: '100vw', height: '100vh' }} >
+      {/* <ReduxExample /> */}
+      <WrappedMap
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `400px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
     </div>
-  );
+  )
 }
-
-export default App;
